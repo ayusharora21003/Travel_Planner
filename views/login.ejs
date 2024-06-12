@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login Page</title>
+    <link rel="stylesheet" href="login.css">
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
+    <meta name="msapplication-TileColor" content="#da532c" />
+    <meta name="theme-color" content="#ffffff" />
+
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+    
+      header {
+        /* navbar sticky */
+        position: sticky;
+        top: 0;
+        /*  */
+    
+        background-color: rgb(0, 153, 255);
+        color: #fff;
+        padding: 13px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        z-index: 0;
+      }
+    
+      nav ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        align-items: center;
+      }
+    
+      nav ul li {
+        margin-left: 10px;
+      }
+    
+      nav ul li a {
+        display: block;
+        color: #fff;
+        text-decoration: none;
+        padding: 10px;
+      }
+    
+      nav ul li a:hover {
+        background-color: #555;
+      }
+    
+      .signup-btn {
+        position: absolute;
+        top: 18px;
+        right: 127px;
+    
+        background-color: #333;
+        color: #fff;
+        padding: 7px 20px;
+        text-decoration: none;
+        border-radius: 5px;
+      }
+    
+      .signin-btn {
+        position: absolute;
+        right: 10px;
+        top: 18px;
+    
+        background-color: #333;
+        color: #fff;
+        padding: 7px 20px;
+        text-decoration: none;
+        border-radius: 5px;
+      }
+    
+      .logout-btn {
+        position: absolute;
+        right: 15px;
+        top: 18px;
+    
+        background-color: #333;
+        color: #fff;
+        padding: 7px 20px;
+        text-decoration: none;
+        border-radius: 5px;
+      }
+    
+      .logos {
+        width: 11.5%;
+        height: 0.1%;
+        /* border: 3px solid white; */
+        border-radius: 80px;
+      }
+      .nav-list {
+        display: flex;
+        /* align-items: center; */
+      }
+    
+      .line {
+        height: 4px;
+        width: 28px;
+        margin: 6px 3px;
+        background-color: white;
+      }
+    
+      .burger {
+        display: none;
+        position: absolute;
+        top: 10px;
+        right: 7px;
+      }
+    
+      @media only screen and (max-width: 750px) {
+        .nav-list {
+          flex-direction: column;
+        }
+        .burger {
+          display: block;
+        }
+        .signin-btn {
+          margin-top: 50px;
+        }
+        .signup-btn {
+          margin-top: 50px;
+        }
+        .logout-btn {
+          position: absolute;
+          right: 50px;
+          margin-top: 65px;
+        }
+        .nav-bar {
+          align-items: center;
+        }
+        .h-nav {
+          height: 25px;
+        }
+        .nav-list-resp {
+          opacity: 0;
+          /* transition: all 0.3s ease-out; */
+        }
+        .footer-container {
+          height: 1250px;
+        }
+        .logos {
+      display: none;
+    }
+      }
+    </style>
+
+  </head>
+  <body>
+
+    <header>
+      <nav class="h-nav navbar">
+        <ul class="nav-list nav-list-resp">
+          <img class="logos" src="ayushlogo.png" alt="Travel Planner" />
+          <li><a href="/">Home</a></li>
+
+          <% if (token) { %>
+            <li><a href="booking">Booking</a></li>
+            <% } %>
+          <!-- <li><a href="secret">Secret</a></li> -->
+          <!-- <li><a href="#destination">Destination</a></li> -->
+          <li><a href="about">About Us</a></li>
+          <!-- <li><a href="#contactus">Contact Us</a></li> -->
+          <% if (!token) { %>
+            <li id="signup-link">
+              <a href="signup" class="signup-btn">Sign Up</a>
+            </li>
+            <li id="login-link">
+              <a href="login" class="signin-btn">Sign In</a>
+            </li>
+            <% } %>
+          <!-- <li><a href="signup" class="signup-btn">Sign Up</a></li> -->
+          <!-- <li><a href="login" class="signin-btn">Sign In</a></li> -->
+          <!-- <% if (token) { %>
+            <li id="logout-link">
+              <a href="logout" class="logout-btn">Log Out</a>
+            </li>
+            <% } %> -->
+          <!-- <li><a href="logout" class="logout-btn">Log Out</a></li> -->
+        </ul>
+        <div class="burger">
+          <div class="line"></div>
+          <div class="line"></div>
+          <div class="line"></div>
+        </div>
+      </nav>
+    </header>
+
+    <!-- <main> -->
+      <!-- <h2>Welcome to Travel Planner</h2> -->
+      <!-- <p>Explore new destinations and plan your dream vacation.</p> -->
+    <!-- </main> -->
+
+    <div class="login-container">
+      <h2>Login</h2>
+      <div class="image-container">
+        <img src="images.png" alt="logo" class="logo" />
+      </div>
+      <form action="/login" method="post">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" placeholder="username" required /><br /><br />
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" placeholder="password" required />
+
+        <span><input type="submit" value="Login" /></span>
+        <span><input type="reset" value="Reset" /></span>
+
+        <div class="create">
+          <h3>Don't have an account yet?</h3>
+          <a  class="newaccount" href="signup"><h3>Create one for free!</h3></a>
+        </div>
+
+      </form>
+    </div>
+
+    <script>
+      burger = document.querySelector(".burger");
+      navlist = document.querySelector(".nav-list");
+      navbar = document.querySelector(".navbar");
+    
+      burger.addEventListener("click", () => {
+        navlist.classList.toggle("nav-list-resp");
+        navbar.classList.toggle("h-nav");
+
+      });
+
+    
+    
+    // login logout functionality
+      //   const token = "<%= token %>";
+    
+      //   const loginLink = document.getElementById("login-link");
+      //   const signupLink = document.getElementById("signup-link");
+      //   const logoutLink = document.getElementById("logout-link");
+    
+      //   // Function to toggle the display of login and logout links
+      //   function toggleLinks() {
+      //     if (token) {
+      //       loginLink.style.display = "none";
+      //       signupLink.style.display = "none";
+      //       logoutLink.style.display = "inline";
+      //     } else {
+      //       loginLink.style.display = "inline";
+      //       signupLink.style.display = "inline";
+      //       logoutLink.style.display = "none";
+      //     }
+      //   }
+    
+      //   // Initial toggle on page load
+      //   toggleLinks();
+      // window.addEventListener("DOMContentLoaded", toggleLinks);
+
+
+    </script>
+
+
+  </body>
+</html>

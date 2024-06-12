@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Ayush Tours & Travel</title>
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
+    <meta name="msapplication-TileColor" content="#da532c" />
+    <meta name="theme-color" content="#ffffff" />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap"
+      rel="stylesheet"
+    />
+    <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="home.css" />
+
+    <style>
+      .card-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+        padding: 20px;
+      }
+
+      .card {
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        margin-bottom: 20px;
+      }
+
+      .card-image {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+      }
+
+      .card-content {
+        padding: 16px;
+      }
+
+      .card-title {
+        font-size: 24px;
+        margin: 8px 0;
+      }
+
+      .card-description {
+        font-size: 14px;
+        color: #666;
+        margin: 8px 0;
+      }
+
+      .card-button {
+        display: inline-block;
+        background-color: #007bff;
+        color: #fff;
+        padding: 8px 16px;
+        text-decoration: none;
+        border-radius: 4px;
+      }
+
+      .card-button:hover {
+        background-color: #0056b3;
+      }
+
+      .gif-container {
+        position: relative;
+        width: 100%;
+      }
+
+      .gif-container img {
+        width: 100%;
+        height: 500px;
+        display: block;
+      }
+
+      .gif-text {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        color: #fff;
+        background-color: rgba(0, 0, 0, 0.7);
+        padding: 20px;
+        border-radius: 8px;
+      }
+
+      .gif-text h1 {
+        font-size: 32px;
+        margin-bottom: 16px;
+      }
+
+      .gif-text p {
+        /* font-size: 18px; */
+        margin: 0;
+      }
+      .contact-container h1{
+        font-family: 'Permanent Marker', cursive;
+        /* font-size: 40px; */
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <!-- Travel Planner -->
+
+      <nav class="h-nav navbar">
+        <ul class="nav-list nav-list-resp">
+          <img class="logos" src="ayushlogo.png" alt="Travel Planner" />
+          <li><a href="/">Home</a></li>
+
+          <% if (token) { %>
+          <li><a href="booking">Booking</a></li>
+          <% } %>
+
+          <!-- smooth flow at destination by providing #destination and jha le jaani hai vaha pe id destination likh do-->
+          <li><a href="#destination">Destination</a></li>
+          <li><a href="about">About Us</a></li>
+          <li><a href="#contactus">Contact Us</a></li>
+
+          <% if (!token) { %>
+          <li id="signup-link">
+            <a href="signup" class="signup-btn">Sign Up</a>
+          </li>
+          <li id="login-link">
+            <a href="login" class="signin-btn">Sign In</a>
+          </li>
+          <% } %>
+
+          <% if (token) { %>
+          <li id="logout-link">
+            <a href="logout" class="logout-btn" onclick="refresh()">Log Out</a>
+          </li>
+          <% } %>
+        </ul>
+        <div class="burger">
+          <div class="line"></div>
+          <div class="line"></div>
+          <div class="line"></div>
+        </div>
+      </nav>
+    </header>
+
+    <div class="gif-container">
+      <img src="JAPAN.jpg" alt="GIF" />
+      <div class="gif-text">
+        <h2>Welcome to Travel Planner</h2>
+        <p>Explore new destinations and plan your dream vacation.</p>
+      </div>
+    </div>
+
+    <div class="bg">
+      <!-- <main>
+        <h2>Welcome to Travel Planner</h2>
+        <p>Explore new destinations and plan your dream vacation.</p>
+      </main> -->
+      <!-- <script src="resp.js"></scrip> -->
+
+      <h3 align="center" id="destination">Explore destinations by theme</h3>
+
+      <div class="card-grid">
+        <div class="card">
+          <a href="romance"><img src="romance.jpg" alt="Card Image 1" class="card-image" /></a>
+          <div class="card-content">
+            <h3 class="card-title">Honeymoon/Romance</h3>
+            <p class="card-description">60+ destinations</p>
+            <a href="romance" class="card-button">Read More</a>
+          </div>
+        </div>
+        
+        <div class="card">
+          <img src="family.jpg" alt="Card Image 2" class="card-image" />
+          <div class="card-content">
+            <h3 class="card-title">Family</h3>
+            <p class="card-description">70+ destinations</p>
+            <a href="family" class="card-button">Read More</a>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="frands.jpg" alt="Card Image 2" class="card-image" />
+          <div class="card-content">
+            <h3 class="card-title">Friends</h3>
+            <p class="card-description">10+ destinations</p>
+            <a href="friends" class="card-button">Read More</a>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="solo.jpg" alt="Card Image 2" class="card-image" />
+          <div class="card-content">
+            <h3 class="card-title">Solo</h3>
+            <p class="card-description">120+ destinations</p>
+            <a href="solo" class="card-button">Read More</a>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="adventure.jpg" alt="Card Image 2" class="card-image" />
+          <div class="card-content">
+            <h3 class="card-title">Adventure</h3>
+            <p class="card-description">30+ destinations</p>
+            <a href="adventure" class="card-button">Read More</a>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="nature.jpg" alt="Card Image 2" class="card-image" />
+          <div class="card-content">
+            <h3 class="card-title">Nature</h3>
+            <p class="card-description">100+ destinations</p>
+            <a href="nature" class="card-button">Read More</a>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="relgious.jpg" alt="Card Image 2" class="card-image" />
+          <div class="card-content">
+            <h3 class="card-title">Religious</h3>
+            <p class="card-description">60+ destinations</p>
+            <a href="religious" class="card-button">Read More</a>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="water.jpg" alt="Card Image 2" class="card-image" />
+          <div class="card-content">
+            <h3 class="card-title">Water Activities</h3>
+            <p class="card-description">20+ destinations</p>
+            <a href="wateract" class="card-button">Read More</a>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="wildlife.jpeg" alt="Card Image 2" class="card-image" />
+          <div class="card-content">
+            <h3 class="card-title">Wildlife</h3>
+            <p class="card-description">20+ destinations</p>
+            <a href="wildlife" class="card-button">Read More</a>
+          </div>
+        </div>
+      </div>
+
+      <button onclick="scrollToTop()" id="scrollBtn" title="Go to top">
+        <i class="fa-solid fa-circle-arrow-up fa-xl" style="color: #155ad1"></i>
+      </button>
+
+      <div id="contactus" class="contactus"></div>
+
+      <div class="contact-container">
+        <h1>Contact Us</h1>
+        <!-- <h3 align="center" >we will be happy to help you!!</h3> -->
+        <form action="/contact" method="POST">
+          <label for="name">Name:</label>
+          <input type="text" id="name" name="name" required />
+
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" required />
+
+          <label for="subject">Subject:</label>
+          <input type="text" id="subject" name="subject" required />
+
+          <label for="message">Message:</label>
+          <textarea id="message" name="message" required> </textarea>
+
+          <button class="contact-submit" type="submit">Submit</button>
+        </form>
+      </div>
+
+      <div class="talk">
+        <i class="fa-solid fa-dinosaur fa-bounce fa" style="color: #511f46"
+          ><a href="#"
+            ><img
+              src="talk.png"
+              alt="talk"
+              height="100px"
+              title="Ask a doubt"
+            /> </a
+        ></i>
+      </div>
+    </div>
+
+    <footer>
+      <h3>Hey!,i am Ayush</h3>
+
+      <div class="footer-container">
+        <div class="ayush">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore
+          architecto voluptates iure modi id, distinctio nemo laboriosam quaerat
+          mollitia natus vitae, veritatis ut eum sint, explicabo quibusdam.
+          Saepe, qui eaque ipsum dignissimos excepturi possimus doloremque error
+        </div>
+        <div class="akhil">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore
+          architecto voluptates iure modi id, distinctio nemo laboriosam quaerat
+          mollitia natus vitae, veritatis ut eum sint, explicabo quibusdam.
+          Saepe, qui eaque ipsum dignissimos excepturi possimus doloremque error
+        </div>
+        <!-- <div class="feedback">
+          
+          Be it an enquiry,feedback or a simple suggestion,Write to us
+          ayusharora21003@gmail.com<
+        </div> -->
+      </div>
+
+      <i class="fa-solid fa-dinosaur fa-bounce fa" style="color: #511f46"
+        >Handles</i
+      >
+      <div class="handles">
+        <a href="https://www.facebook.com/" target="_blank">
+          <i
+            class="fa-brands fa-facebook fa-beat-fade fa-2x"
+            style="color: #2004f6"
+          ></i>
+        </a>
+
+        <a href="https://www.whatsapp.com/" target="_blank">
+          <i
+            class="fa-brands fa-whatsapp fa-beat-fade fa-2x"
+            style="color: #30f609"
+          ></i>
+        </a>
+
+        <a href="https://www.youtube.com/" target="_blank">
+          <i
+            class="fa-brands fa-youtube fa-beat-fade fa-2x"
+            style="color: #f00a29"
+          ></i>
+        </a>
+
+        <a href="https://www.twitter.com/" target="_blank">
+          <i
+            class="fa-brands fa-twitter fa-beat-fade fa-2x"
+            style="color: #2004f6"
+          ></i>
+        </a>
+      </div>
+      <p>&copy; 2023 Travel Planner. All rights reserved.</p>
+    </footer>
+
+
+    <script>
+            burger = document.querySelector(".burger");
+            navlist = document.querySelector(".nav-list");
+            navbar = document.querySelector(".navbar");
+
+            burger.addEventListener("click", () => {
+              navlist.classList.toggle("nav-list-resp");
+              navbar.classList.toggle("h-nav");
+            });
+
+            // Show the scroll button when scrolling down
+            window.onscroll = function () {
+              scrollFunction();
+            };
+
+            function scrollFunction() {
+              var scrollBtn = document.getElementById("scrollBtn");
+              if (
+                document.body.scrollTop > 20 ||
+                document.documentElement.scrollTop > 20
+              ) {
+                scrollBtn.style.display = "block";
+              } else {
+                scrollBtn.style.display = "none";
+              }
+            }
+
+            // Scroll to the top when the button is clicked
+            function scrollToTop() {
+              document.body.scrollTop = 0;
+              document.documentElement.scrollTop = 0;
+            }
+
+            function refresh() {
+              location.reload();
+              return false;
+            }
+
+            
+
+    </script>
+  </body>
+</html>
